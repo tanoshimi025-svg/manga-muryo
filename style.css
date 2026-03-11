@@ -99,11 +99,33 @@ header {
 }
 
 /* フッター */
-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.8rem;
-    color: #7f8c8d;
+.simple-footer {
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    align-items: center;    /* 中央揃え */
+    padding: 20px 0;        /* 上下の余白 */
+    gap: 8px;               /* アイコンとテキストの隙間 */
+    font-family: sans-serif;
+}
+
+/* Xアイコンのサイズと色 */
+.x-svg {
+    width: 22px;   /* アイコンの大きさ */
+    height: 22px;
+    fill: #333;    /* アイコンの色（黒系） */
+    transition: opacity 0.2s;
+}
+
+/* ホバー（マウスを乗せた時）の演出 */
+.x-icon-link:hover .x-svg {
+    opacity: 0.7;
+}
+
+/* テキストのスタイル */
+.simple-footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
 
 /* PCなどの広い画面向けの微調整 */
@@ -113,6 +135,7 @@ footer {
     }
 
 }
+
 
 
 
