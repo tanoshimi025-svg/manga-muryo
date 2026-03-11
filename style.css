@@ -47,7 +47,7 @@ header {
 .iframe-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 500%; 
+    padding-top: 400%; 
 }
 
 .iframe-wrapper iframe {
@@ -104,5 +104,6 @@ footer {
     }
 
 }
+
 
 
