@@ -47,7 +47,7 @@ header {
 .iframe-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9のアスペクト比 */
+    padding-top: 600%; 
 }
 
 .iframe-wrapper iframe {
@@ -102,4 +102,5 @@ footer {
     header h1 {
         font-size: 2.5rem;
     }
+
 }
