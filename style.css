@@ -63,7 +63,16 @@ header {
 /* Twitter埋め込みの調整 */
 .twitter-wrapper {
     width: 100%;
+    max-width: 500px;      /* タイムラインが広がりすぎないように制限 */
+    margin: 0 auto;        /* 中央寄せ（必要であれば） */
+    min-height: 400px;     /* 読み込み前にガタつかないよう最小高さを確保 */
     overflow: hidden;
+    border-radius: 12px;   /* 角を丸くすると今っぽくなります */
+}
+
+/* 埋め込み要素自体への指定 */
+.twitter-wrapper iframe {
+    border: none !important;
 }
 
 /* アフィリエイトリンク（ボタン風） */
@@ -104,6 +113,7 @@ footer {
     }
 
 }
+
 
 
 
