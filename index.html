@@ -112,9 +112,9 @@ title: いま無料で読める漫画がわかるサイト
     }
 </style>
 <section class="content-box">
-    <h2>新着ブログ記事</h2>
+    <h2>新着記事</h2>
     <ul class="blog-list">
-        {% for post in site.pages %}
+        {% for post in sorted_pages limit:3 %}
             {% if post.path contains 'blog/' and post.path != 'blog/index.html' %}
                 <li>
                     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -134,6 +134,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
