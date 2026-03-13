@@ -13,50 +13,90 @@ title: いま無料で読める漫画がわかるサイト
 </section>
 
 <script>
-    // 1. 先ほどデプロイしたGASのURLをここに貼り付けてください
-    const GAS_URL = "https://script.google.com/macros/s/AKfycbzj5YdKLmq5HEC_nyhiAQJG_RcFDzOOgL8aNMcd4LTB_TWk02uAlhAw4tAc_A1GbvQ/exec";
+    const GAS_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrTQW7az9R4KvQqdq-LprHnHf8zMvaw3WHR3ihblcR4NBVVRtG3teiraA0Q_nPeqNv6I2ceu2SBUk8GjKuElVS_3EAPvh4fEezjIcoTeE6jaJKB4z8ojNPlZuuw3-r9Dmu2N9KkN_JEbItqyrBrYPKG21MuuGci2Cl2BHlvQo-RZpQGlaOnV2OHoCxco4RbXjlWWAM5a81ef4Tpd4AGp-lgndo1CcTS0UcWlSd_wV4BQBJtelM_CLGNaY1hBKgp8Rw77ZHYfgyaHjcWLGGqKa439UL9aIQ&lib=M8anMNgM29Sd-pgvE6-tpDTykRsKEY4r6";
 
     async function fetchComicData() {
         try {
             const response = await fetch(GAS_URL);
             const data = await response.json();
             
-            if (data.length === 0) return;
+            if (data.length <= 1) return; // データがない場合は中断
 
-            // テーブルの生成
-            let html = '<table style="width:100%; border-collapse: collapse;">';
+            let html = '<table class="comic-list-table">';
             
-            // 1行目（ヘッダー）の処理
-            html += '<thead><tr style="background: #f4f4f4;">';
-            data[0].forEach(cell => {
-                html += `<th style="border: 1px solid #ddd; padding: 10px; text-align: left;">${cell}</th>`;
-            });
-            html += '</tr></thead>';
+            // ヘッダーの作成（C:タイトル, D:無料範囲, E:配信サイト）
+            // A(0), B(1)は飛ばして、C(2), D(3), E(4)を表示
+            html += `
+                <thead>
+                    <tr>
+                        <th>タイトル</th>
+                        <th>無料範囲</th>
+                        <th>配信サイト</th>
+                    </tr>
+                </thead>
+                <tbody>`;
 
-            // 2行目以降（データ）の処理
-            html += '<tbody>';
+            // 2行目以降のデータ処理
             for (let i = 1; i < data.length; i++) {
-                html += '<tr>';
-                data[i].forEach(cell => {
-                    html += `<td style="border: 1px solid #ddd; padding: 10px;">${cell}</td>`;
-                });
-                html += '</tr>';
+                const row = data[i];
+                const url = row[1];       // B列: URL
+                const title = row[2];     // C列: タイトル
+                const range = row[3];     // D列: 無料範囲
+                const site = row[4];      // E列: 配信サイト
+
+                // タイトルにURLのリンクを付与
+                html += `
+                    <tr>
+                        <td><a href="${url}" target="_blank" rel="noopener">${title}</a></td>
+                        <td>${range}</td>
+                        <td>${site}</td>
+                    </tr>`;
             }
             html += '</tbody></table>';
 
-            // 画面に反映
             document.getElementById('loading-msg').style.display = 'none';
             document.getElementById('comic-table-container').innerHTML = html;
 
         } catch (error) {
-            console.error("データの取得に失敗しました:", error);
+            console.error("エラー:", error);
             document.getElementById('loading-msg').innerText = "データの取得に失敗しました。";
         }
     }
 
-    // 実行
     fetchComicData();
 </script>
+
+<style>
+    /* テーブルのデザインを少し整えます */
+    .comic-list-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+    .comic-list-table th, .comic-list-table td {
+        border-bottom: 1px solid #eee;
+        padding: 12px 8px;
+        text-align: left;
+    }
+    .comic-list-table th {
+        background-color: #fcfcfc;
+        color: #555;
+        font-weight: bold;
+    }
+    .comic-list-table a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .comic-list-table a:hover {
+        text-decoration: underline;
+    }
+    /* スマホで見やすくするための横スクロール設定 */
+    .iframe-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
 
 <style>
     /* 元のiframe-wrapperのスタイルを活かすための調整 */
@@ -94,6 +134,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
