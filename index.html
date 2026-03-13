@@ -15,7 +15,7 @@ title: いま無料で読める漫画がわかるサイト
         {% for post in site.pages %}
             {% if post.path contains 'blog/' %}
                 <li>
-                    <span class="post-date">{{ post.path | split: '/' | last | slice: 0, 10 }}</span> <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                 </li>
             {% endif %}
         {% endfor %}
@@ -30,6 +30,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
