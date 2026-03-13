@@ -1,0 +1,21 @@
+---
+layout: default
+title: ブログ記事一覧
+---
+
+<section class="content-box">
+    <h2>すべての記事</h2>
+    <ul class="blog-list">
+        {% for post in site.pages %}
+            {% if post.path contains 'blog/' and post.path != 'blog/index.html' %}
+                <li>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>
+
+<footer class="post-footer">
+    <a href="{{ '/' | relative_url }}" class="back-button">← トップへ戻る</a>
+</footer>
