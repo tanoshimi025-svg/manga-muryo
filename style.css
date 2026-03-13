@@ -243,6 +243,27 @@ th {
     color: #0056b3;
     text-decoration: underline;
 }
+/* 箇条書きがはみ出さないための調整 */
+.article-list {
+    padding-left: 1.5em; /* 左側に余白を作る */
+    margin: 1em 0;
+}
+
+.article-list li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+    /* 点を内側に収める設定 */
+    list-style-position: outside; 
+}
+
+/* リンクの色を少し目立たせる（お好みで） */
+.post-content a {
+    color: #007bff;
+    text-decoration: underline;
+}
+.post-content a:hover {
+    text-decoration: none;
+}
 
 
 
