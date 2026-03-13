@@ -47,7 +47,6 @@ header {
 .iframe-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 100%; 
 }
 
 .iframe-wrapper iframe {
@@ -304,6 +303,7 @@ th {
     color: #888;
     font-size: 0.8em;
 }
+
 
 
 
