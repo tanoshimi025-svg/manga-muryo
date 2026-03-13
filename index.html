@@ -9,6 +9,19 @@ title: いま無料で読める漫画がわかるサイト
             </div>
         </section>
 
+<section class="content-box">
+    <h2>新着ブログ記事</h2>
+    <ul class="blog-list">
+        {% for post in site.pages %}
+            {% if post.path contains 'blog/' %}
+                <li>
+                    <span class="post-date">{{ post.path | split: '/' | last | slice: 0, 10 }}</span> <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</section>
+
         <!-- <section class="content-box">
             <h2>おすすめアイテム</h2>
             <div class="affiliate-links">
@@ -17,6 +30,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
