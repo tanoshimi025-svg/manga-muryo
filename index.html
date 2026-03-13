@@ -2,12 +2,75 @@
 layout: default
 title: いま無料で読める漫画がわかるサイト
 ---
-        <section class="content-box">
-            <h2>いま無料で読める漫画たち</h2>
-            <div class="iframe-wrapper">
-                <iframe src="https://script.google.com/macros/s/AKfycbzhmVgS8fZ2a_13cShJVD05PPbQM9HWlRQcfzHMQpcWI0SgbO2FhY0N0W0HPaum-zvl/exec" title="Sample Iframe"></iframe>
-            </div>
-        </section>
+<section class="content-box">
+    <h2>いま無料で読める漫画たち</h2>
+    <div class="iframe-wrapper">
+        <div id="loading-msg" style="text-align: center; padding: 20px; color: #666;">
+            読み込み中...
+        </div>
+        <div id="comic-table-container"></div>
+    </div>
+</section>
+
+<script>
+    // 1. 先ほどデプロイしたGASのURLをここに貼り付けてください
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbzj5YdKLmq5HEC_nyhiAQJG_RcFDzOOgL8aNMcd4LTB_TWk02uAlhAw4tAc_A1GbvQ/exec";
+
+    async function fetchComicData() {
+        try {
+            const response = await fetch(GAS_URL);
+            const data = await response.json();
+            
+            if (data.length === 0) return;
+
+            // テーブルの生成
+            let html = '<table style="width:100%; border-collapse: collapse;">';
+            
+            // 1行目（ヘッダー）の処理
+            html += '<thead><tr style="background: #f4f4f4;">';
+            data[0].forEach(cell => {
+                html += `<th style="border: 1px solid #ddd; padding: 10px; text-align: left;">${cell}</th>`;
+            });
+            html += '</tr></thead>';
+
+            // 2行目以降（データ）の処理
+            html += '<tbody>';
+            for (let i = 1; i < data.length; i++) {
+                html += '<tr>';
+                data[i].forEach(cell => {
+                    html += `<td style="border: 1px solid #ddd; padding: 10px;">${cell}</td>`;
+                });
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+
+            // 画面に反映
+            document.getElementById('loading-msg').style.display = 'none';
+            document.getElementById('comic-table-container').innerHTML = html;
+
+        } catch (error) {
+            console.error("データの取得に失敗しました:", error);
+            document.getElementById('loading-msg').innerText = "データの取得に失敗しました。";
+        }
+    }
+
+    // 実行
+    fetchComicData();
+</script>
+
+<style>
+    /* 元のiframe-wrapperのスタイルを活かすための調整 */
+    .iframe-wrapper {
+        width: 100%;
+        overflow-x: auto; /* スマホで表がはみ出た時に横スクロール可能にする */
+        min-height: 200px;
+    }
+    /* テーブルのデザイン調整（お好みで） */
+    #comic-table-container table {
+        font-size: 14px;
+        color: #333;
+    }
+</style>
 <section class="content-box">
     <h2>新着ブログ記事</h2>
     <ul class="blog-list">
@@ -31,6 +94,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
