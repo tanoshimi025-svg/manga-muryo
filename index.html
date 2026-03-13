@@ -8,23 +8,21 @@ title: いま無料で読める漫画がわかるサイト
                 <iframe src="https://script.google.com/macros/s/AKfycbzhmVgS8fZ2a_13cShJVD05PPbQM9HWlRQcfzHMQpcWI0SgbO2FhY0N0W0HPaum-zvl/exec" title="Sample Iframe"></iframe>
             </div>
         </section>
-
 <section class="content-box">
     <h2>新着ブログ記事</h2>
     <ul class="blog-list">
         {% for post in site.pages %}
-            {% if post.path contains 'blog/' %}
+            {% if post.path contains 'blog/' and post.path != 'blog/index.html' %}
                 <li>
                     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                 </li>
             {% endif %}
         {% endfor %}
     </ul>
-        <div style="text-align: right; margin-top: 10px;">
-    <a href="{{ '/blog/' | relative_url }}">もっと見る →</a>
-</div>
+    <div style="text-align: right; margin-top: 10px;">
+        <a href="{{ '/blog/' | relative_url }}" style="font-size: 0.9em; color: #666;">もっと見る →</a>
+    </div>
 </section>
-
         <!-- <section class="content-box">
             <h2>おすすめアイテム</h2>
             <div class="affiliate-links">
@@ -33,6 +31,7 @@ title: いま無料で読める漫画がわかるサイト
                 <a href="#" class="aff-button">おすすめ商品 C</a>
             </div>
         </section> -->
+
 
 
 
